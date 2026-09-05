@@ -1,24 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Hero } from "@/components/site/Hero";
+import { TrustMarquee } from "@/components/site/Marquee";
+import { ProblemGrid } from "@/components/site/ProblemGrid";
+import { ServicesSection } from "@/components/site/ServicesSection";
+import { CompactUnit } from "@/components/site/CompactUnit";
+import { HeavyUnit } from "@/components/site/HeavyUnit";
+import { BeforeAfter } from "@/components/site/BeforeAfter";
+import { ProcessTimeline } from "@/components/site/ProcessTimeline";
+import { LocationSection } from "@/components/site/LocationSection";
+import { FaqSection } from "@/components/site/FaqSection";
+import { QuoteSection } from "@/components/site/QuoteForm";
+import { FAQ } from "@/lib/site-data";
+import { pageMeta, faqLd } from "@/lib/seo";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    ...pageMeta({
+      title: "Débouchage & curage 24h/24 en Île-de-France | Hydro-Curage",
+      description:
+        "Canalisation bouchée ? Débouchage, curage, pompage et assainissement 24h/24 et 7j/7 en Île-de-France. Devis gratuit, assurance décennale — 06 67 98 01 90.",
+      url: "/",
+    }),
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(faqLd(FAQ)) }],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Hero />
+      <TrustMarquee />
+      <ProblemGrid />
+      <ServicesSection />
+      <CompactUnit />
+      <HeavyUnit />
+      <BeforeAfter />
+      <ProcessTimeline />
+      <LocationSection />
+      <FaqSection />
+      <QuoteSection />
+    </>
   );
 }

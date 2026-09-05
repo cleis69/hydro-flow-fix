@@ -145,7 +145,7 @@ export function QuoteSection({ defaultService }: { defaultService?: string }) {
           </p>
           <CallButton className="mt-8 w-full sm:w-auto" />
         </div>
-        <QuoteForm defaultService={defaultService} />
+        <QuoteForm {...(defaultService ? { defaultService } : {})} />
       </div>
     </section>
   );
