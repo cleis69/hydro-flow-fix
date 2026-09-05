@@ -24,6 +24,9 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SystemeRelevageRouteImport } from './routes/systeme-relevage'
 import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as DebouchageCanalisationIndexRouteImport } from './routes/debouchage-canalisation.index'
+import { Route as DebouchageCanalisationHautsDeSeineRouteImport } from './routes/debouchage-canalisation.hauts-de-seine'
+import { Route as DebouchageCanalisationParisRouteImport } from './routes/debouchage-canalisation.paris'
+import { Route as DebouchageCanalisationSeineSaintDenisRouteImport } from './routes/debouchage-canalisation.seine-saint-denis'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -101,6 +104,24 @@ const DebouchageCanalisationIndexRoute =
     path: '/debouchage-canalisation/',
     getParentRoute: () => rootRouteImport,
   } as any)
+const DebouchageCanalisationHautsDeSeineRoute =
+  DebouchageCanalisationHautsDeSeineRouteImport.update({
+    id: '/debouchage-canalisation/hauts-de-seine',
+    path: '/debouchage-canalisation/hauts-de-seine',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DebouchageCanalisationParisRoute =
+  DebouchageCanalisationParisRouteImport.update({
+    id: '/debouchage-canalisation/paris',
+    path: '/debouchage-canalisation/paris',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DebouchageCanalisationSeineSaintDenisRoute =
+  DebouchageCanalisationSeineSaintDenisRouteImport.update({
+    id: '/debouchage-canalisation/seine-saint-denis',
+    path: '/debouchage-canalisation/seine-saint-denis',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -117,6 +138,9 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/systeme-relevage': typeof SystemeRelevageRoute
   '/tarifs': typeof TarifsRoute
+  '/debouchage-canalisation/hauts-de-seine': typeof DebouchageCanalisationHautsDeSeineRoute
+  '/debouchage-canalisation/paris': typeof DebouchageCanalisationParisRoute
+  '/debouchage-canalisation/seine-saint-denis': typeof DebouchageCanalisationSeineSaintDenisRoute
   '/debouchage-canalisation/': typeof DebouchageCanalisationIndexRoute
 }
 export interface FileRoutesByTo {
@@ -134,6 +158,9 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/systeme-relevage': typeof SystemeRelevageRoute
   '/tarifs': typeof TarifsRoute
+  '/debouchage-canalisation/hauts-de-seine': typeof DebouchageCanalisationHautsDeSeineRoute
+  '/debouchage-canalisation/paris': typeof DebouchageCanalisationParisRoute
+  '/debouchage-canalisation/seine-saint-denis': typeof DebouchageCanalisationSeineSaintDenisRoute
   '/debouchage-canalisation': typeof DebouchageCanalisationIndexRoute
 }
 export interface FileRoutesById {
@@ -152,6 +179,9 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/systeme-relevage': typeof SystemeRelevageRoute
   '/tarifs': typeof TarifsRoute
+  '/debouchage-canalisation/hauts-de-seine': typeof DebouchageCanalisationHautsDeSeineRoute
+  '/debouchage-canalisation/paris': typeof DebouchageCanalisationParisRoute
+  '/debouchage-canalisation/seine-saint-denis': typeof DebouchageCanalisationSeineSaintDenisRoute
   '/debouchage-canalisation/': typeof DebouchageCanalisationIndexRoute
 }
 export interface FileRouteTypes {
@@ -171,6 +201,9 @@ export interface FileRouteTypes {
     | '/services'
     | '/systeme-relevage'
     | '/tarifs'
+    | '/debouchage-canalisation/hauts-de-seine'
+    | '/debouchage-canalisation/paris'
+    | '/debouchage-canalisation/seine-saint-denis'
     | '/debouchage-canalisation/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -188,6 +221,9 @@ export interface FileRouteTypes {
     | '/services'
     | '/systeme-relevage'
     | '/tarifs'
+    | '/debouchage-canalisation/hauts-de-seine'
+    | '/debouchage-canalisation/paris'
+    | '/debouchage-canalisation/seine-saint-denis'
     | '/debouchage-canalisation'
   id:
     | '__root__'
@@ -205,6 +241,9 @@ export interface FileRouteTypes {
     | '/services'
     | '/systeme-relevage'
     | '/tarifs'
+    | '/debouchage-canalisation/hauts-de-seine'
+    | '/debouchage-canalisation/paris'
+    | '/debouchage-canalisation/seine-saint-denis'
     | '/debouchage-canalisation/'
   fileRoutesById: FileRoutesById
 }
@@ -223,6 +262,9 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SystemeRelevageRoute: typeof SystemeRelevageRoute
   TarifsRoute: typeof TarifsRoute
+  DebouchageCanalisationHautsDeSeineRoute: typeof DebouchageCanalisationHautsDeSeineRoute
+  DebouchageCanalisationParisRoute: typeof DebouchageCanalisationParisRoute
+  DebouchageCanalisationSeineSaintDenisRoute: typeof DebouchageCanalisationSeineSaintDenisRoute
   DebouchageCanalisationIndexRoute: typeof DebouchageCanalisationIndexRoute
 }
 
@@ -333,6 +375,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DebouchageCanalisationIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/debouchage-canalisation/hauts-de-seine': {
+      id: '/debouchage-canalisation/hauts-de-seine'
+      path: '/debouchage-canalisation/hauts-de-seine'
+      fullPath: '/debouchage-canalisation/hauts-de-seine'
+      preLoaderRoute: typeof DebouchageCanalisationHautsDeSeineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/debouchage-canalisation/paris': {
+      id: '/debouchage-canalisation/paris'
+      path: '/debouchage-canalisation/paris'
+      fullPath: '/debouchage-canalisation/paris'
+      preLoaderRoute: typeof DebouchageCanalisationParisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/debouchage-canalisation/seine-saint-denis': {
+      id: '/debouchage-canalisation/seine-saint-denis'
+      path: '/debouchage-canalisation/seine-saint-denis'
+      fullPath: '/debouchage-canalisation/seine-saint-denis'
+      preLoaderRoute: typeof DebouchageCanalisationSeineSaintDenisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -351,6 +414,11 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SystemeRelevageRoute: SystemeRelevageRoute,
   TarifsRoute: TarifsRoute,
+  DebouchageCanalisationHautsDeSeineRoute:
+    DebouchageCanalisationHautsDeSeineRoute,
+  DebouchageCanalisationParisRoute: DebouchageCanalisationParisRoute,
+  DebouchageCanalisationSeineSaintDenisRoute:
+    DebouchageCanalisationSeineSaintDenisRoute,
   DebouchageCanalisationIndexRoute: DebouchageCanalisationIndexRoute,
 }
 export const routeTree = rootRouteImport

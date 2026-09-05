@@ -19,7 +19,7 @@ export const localBusinessLd = {
   },
 };
 
-export function serviceLd(name: string, description: string, areaName = COMPANY.area) {
+export function serviceLd(name: string, description: string, areaName: string = COMPANY.area) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
