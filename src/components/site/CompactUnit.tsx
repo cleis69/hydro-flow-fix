@@ -38,7 +38,7 @@ const ACCESS = [
 
 export function CompactUnit() {
   const [active, setActive] = useState<string>("pression");
-  const current = HOTSPOTS.find((h) => h.id === active) ?? HOTSPOTS[0];
+  const current = HOTSPOTS.find((h) => h.id === active) ?? HOTSPOTS[0]!;
 
   return (
     <section className="relative overflow-hidden">
