@@ -5,7 +5,7 @@ import { pageMeta, serviceLd, breadcrumbLd } from "@/lib/seo";
 
 const service = SERVICES.find((s) => s.slug === "debouchage-canalisation")!;
 
-export const Route = createFileRoute("/debouchage-canalisation")({
+export const Route = createFileRoute("/debouchage-canalisation/")({
   head: () => ({
     ...pageMeta({
       title: "Débouchage de canalisation en Île-de-France — 24h/24 | Hydro-Curage",

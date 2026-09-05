@@ -10,33 +10,155 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BacAGraisseRouteImport } from './routes/bac-a-graisse'
+import { Route as CanalisationsRouteImport } from './routes/canalisations'
+import { Route as CurageCanalisationRouteImport } from './routes/curage-canalisation'
+import { Route as HydrocurageRouteImport } from './routes/hydrocurage'
+import { Route as InspectionCameraRouteImport } from './routes/inspection-camera'
+import { Route as PompageAssainissementRouteImport } from './routes/pompage-assainissement'
+import { Route as SanitaireRouteImport } from './routes/sanitaire'
+import { Route as SystemeRelevageRouteImport } from './routes/systeme-relevage'
+import { Route as DebouchageCanalisationIndexRouteImport } from './routes/debouchage-canalisation.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BacAGraisseRoute = BacAGraisseRouteImport.update({
+  id: '/bac-a-graisse',
+  path: '/bac-a-graisse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CanalisationsRoute = CanalisationsRouteImport.update({
+  id: '/canalisations',
+  path: '/canalisations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CurageCanalisationRoute = CurageCanalisationRouteImport.update({
+  id: '/curage-canalisation',
+  path: '/curage-canalisation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HydrocurageRoute = HydrocurageRouteImport.update({
+  id: '/hydrocurage',
+  path: '/hydrocurage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InspectionCameraRoute = InspectionCameraRouteImport.update({
+  id: '/inspection-camera',
+  path: '/inspection-camera',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PompageAssainissementRoute = PompageAssainissementRouteImport.update({
+  id: '/pompage-assainissement',
+  path: '/pompage-assainissement',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SanitaireRoute = SanitaireRouteImport.update({
+  id: '/sanitaire',
+  path: '/sanitaire',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SystemeRelevageRoute = SystemeRelevageRouteImport.update({
+  id: '/systeme-relevage',
+  path: '/systeme-relevage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DebouchageCanalisationIndexRoute =
+  DebouchageCanalisationIndexRouteImport.update({
+    id: '/debouchage-canalisation/',
+    path: '/debouchage-canalisation/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bac-a-graisse': typeof BacAGraisseRoute
+  '/canalisations': typeof CanalisationsRoute
+  '/curage-canalisation': typeof CurageCanalisationRoute
+  '/hydrocurage': typeof HydrocurageRoute
+  '/inspection-camera': typeof InspectionCameraRoute
+  '/pompage-assainissement': typeof PompageAssainissementRoute
+  '/sanitaire': typeof SanitaireRoute
+  '/systeme-relevage': typeof SystemeRelevageRoute
+  '/debouchage-canalisation/': typeof DebouchageCanalisationIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bac-a-graisse': typeof BacAGraisseRoute
+  '/canalisations': typeof CanalisationsRoute
+  '/curage-canalisation': typeof CurageCanalisationRoute
+  '/hydrocurage': typeof HydrocurageRoute
+  '/inspection-camera': typeof InspectionCameraRoute
+  '/pompage-assainissement': typeof PompageAssainissementRoute
+  '/sanitaire': typeof SanitaireRoute
+  '/systeme-relevage': typeof SystemeRelevageRoute
+  '/debouchage-canalisation': typeof DebouchageCanalisationIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bac-a-graisse': typeof BacAGraisseRoute
+  '/canalisations': typeof CanalisationsRoute
+  '/curage-canalisation': typeof CurageCanalisationRoute
+  '/hydrocurage': typeof HydrocurageRoute
+  '/inspection-camera': typeof InspectionCameraRoute
+  '/pompage-assainissement': typeof PompageAssainissementRoute
+  '/sanitaire': typeof SanitaireRoute
+  '/systeme-relevage': typeof SystemeRelevageRoute
+  '/debouchage-canalisation/': typeof DebouchageCanalisationIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/bac-a-graisse'
+    | '/canalisations'
+    | '/curage-canalisation'
+    | '/hydrocurage'
+    | '/inspection-camera'
+    | '/pompage-assainissement'
+    | '/sanitaire'
+    | '/systeme-relevage'
+    | '/debouchage-canalisation/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/bac-a-graisse'
+    | '/canalisations'
+    | '/curage-canalisation'
+    | '/hydrocurage'
+    | '/inspection-camera'
+    | '/pompage-assainissement'
+    | '/sanitaire'
+    | '/systeme-relevage'
+    | '/debouchage-canalisation'
+  id:
+    | '__root__'
+    | '/'
+    | '/bac-a-graisse'
+    | '/canalisations'
+    | '/curage-canalisation'
+    | '/hydrocurage'
+    | '/inspection-camera'
+    | '/pompage-assainissement'
+    | '/sanitaire'
+    | '/systeme-relevage'
+    | '/debouchage-canalisation/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BacAGraisseRoute: typeof BacAGraisseRoute
+  CanalisationsRoute: typeof CanalisationsRoute
+  CurageCanalisationRoute: typeof CurageCanalisationRoute
+  HydrocurageRoute: typeof HydrocurageRoute
+  InspectionCameraRoute: typeof InspectionCameraRoute
+  PompageAssainissementRoute: typeof PompageAssainissementRoute
+  SanitaireRoute: typeof SanitaireRoute
+  SystemeRelevageRoute: typeof SystemeRelevageRoute
+  DebouchageCanalisationIndexRoute: typeof DebouchageCanalisationIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +170,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bac-a-graisse': {
+      id: '/bac-a-graisse'
+      path: '/bac-a-graisse'
+      fullPath: '/bac-a-graisse'
+      preLoaderRoute: typeof BacAGraisseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/canalisations': {
+      id: '/canalisations'
+      path: '/canalisations'
+      fullPath: '/canalisations'
+      preLoaderRoute: typeof CanalisationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/curage-canalisation': {
+      id: '/curage-canalisation'
+      path: '/curage-canalisation'
+      fullPath: '/curage-canalisation'
+      preLoaderRoute: typeof CurageCanalisationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hydrocurage': {
+      id: '/hydrocurage'
+      path: '/hydrocurage'
+      fullPath: '/hydrocurage'
+      preLoaderRoute: typeof HydrocurageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inspection-camera': {
+      id: '/inspection-camera'
+      path: '/inspection-camera'
+      fullPath: '/inspection-camera'
+      preLoaderRoute: typeof InspectionCameraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pompage-assainissement': {
+      id: '/pompage-assainissement'
+      path: '/pompage-assainissement'
+      fullPath: '/pompage-assainissement'
+      preLoaderRoute: typeof PompageAssainissementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sanitaire': {
+      id: '/sanitaire'
+      path: '/sanitaire'
+      fullPath: '/sanitaire'
+      preLoaderRoute: typeof SanitaireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/systeme-relevage': {
+      id: '/systeme-relevage'
+      path: '/systeme-relevage'
+      fullPath: '/systeme-relevage'
+      preLoaderRoute: typeof SystemeRelevageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/debouchage-canalisation/': {
+      id: '/debouchage-canalisation/'
+      path: '/debouchage-canalisation'
+      fullPath: '/debouchage-canalisation/'
+      preLoaderRoute: typeof DebouchageCanalisationIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BacAGraisseRoute: BacAGraisseRoute,
+  CanalisationsRoute: CanalisationsRoute,
+  CurageCanalisationRoute: CurageCanalisationRoute,
+  HydrocurageRoute: HydrocurageRoute,
+  InspectionCameraRoute: InspectionCameraRoute,
+  PompageAssainissementRoute: PompageAssainissementRoute,
+  SanitaireRoute: SanitaireRoute,
+  SystemeRelevageRoute: SystemeRelevageRoute,
+  DebouchageCanalisationIndexRoute: DebouchageCanalisationIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
