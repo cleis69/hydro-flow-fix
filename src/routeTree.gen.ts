@@ -18,6 +18,8 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as HydrocurageRouteImport } from './routes/hydrocurage'
 import { Route as InspectionCameraRouteImport } from './routes/inspection-camera'
 import { Route as InterventionRouteImport } from './routes/intervention'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as PolitiqueConfidentialiteRouteImport } from './routes/politique-confidentialite'
 import { Route as PompageAssainissementRouteImport } from './routes/pompage-assainissement'
 import { Route as SanitaireRouteImport } from './routes/sanitaire'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -73,6 +75,17 @@ const InterventionRoute = InterventionRouteImport.update({
   path: '/intervention',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PolitiqueConfidentialiteRoute =
+  PolitiqueConfidentialiteRouteImport.update({
+    id: '/politique-confidentialite',
+    path: '/politique-confidentialite',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PompageAssainissementRoute = PompageAssainissementRouteImport.update({
   id: '/pompage-assainissement',
   path: '/pompage-assainissement',
@@ -133,6 +146,8 @@ export interface FileRoutesByFullPath {
   '/hydrocurage': typeof HydrocurageRoute
   '/inspection-camera': typeof InspectionCameraRoute
   '/intervention': typeof InterventionRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/pompage-assainissement': typeof PompageAssainissementRoute
   '/sanitaire': typeof SanitaireRoute
   '/services': typeof ServicesRoute
@@ -153,6 +168,8 @@ export interface FileRoutesByTo {
   '/hydrocurage': typeof HydrocurageRoute
   '/inspection-camera': typeof InspectionCameraRoute
   '/intervention': typeof InterventionRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/pompage-assainissement': typeof PompageAssainissementRoute
   '/sanitaire': typeof SanitaireRoute
   '/services': typeof ServicesRoute
@@ -174,6 +191,8 @@ export interface FileRoutesById {
   '/hydrocurage': typeof HydrocurageRoute
   '/inspection-camera': typeof InspectionCameraRoute
   '/intervention': typeof InterventionRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-confidentialite': typeof PolitiqueConfidentialiteRoute
   '/pompage-assainissement': typeof PompageAssainissementRoute
   '/sanitaire': typeof SanitaireRoute
   '/services': typeof ServicesRoute
@@ -196,6 +215,8 @@ export interface FileRouteTypes {
     | '/hydrocurage'
     | '/inspection-camera'
     | '/intervention'
+    | '/mentions-legales'
+    | '/politique-confidentialite'
     | '/pompage-assainissement'
     | '/sanitaire'
     | '/services'
@@ -216,6 +237,8 @@ export interface FileRouteTypes {
     | '/hydrocurage'
     | '/inspection-camera'
     | '/intervention'
+    | '/mentions-legales'
+    | '/politique-confidentialite'
     | '/pompage-assainissement'
     | '/sanitaire'
     | '/services'
@@ -236,6 +259,8 @@ export interface FileRouteTypes {
     | '/hydrocurage'
     | '/inspection-camera'
     | '/intervention'
+    | '/mentions-legales'
+    | '/politique-confidentialite'
     | '/pompage-assainissement'
     | '/sanitaire'
     | '/services'
@@ -257,6 +282,8 @@ export interface RootRouteChildren {
   HydrocurageRoute: typeof HydrocurageRoute
   InspectionCameraRoute: typeof InspectionCameraRoute
   InterventionRoute: typeof InterventionRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
+  PolitiqueConfidentialiteRoute: typeof PolitiqueConfidentialiteRoute
   PompageAssainissementRoute: typeof PompageAssainissementRoute
   SanitaireRoute: typeof SanitaireRoute
   ServicesRoute: typeof ServicesRoute
@@ -331,6 +358,20 @@ declare module '@tanstack/react-router' {
       path: '/intervention'
       fullPath: '/intervention'
       preLoaderRoute: typeof InterventionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politique-confidentialite': {
+      id: '/politique-confidentialite'
+      path: '/politique-confidentialite'
+      fullPath: '/politique-confidentialite'
+      preLoaderRoute: typeof PolitiqueConfidentialiteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pompage-assainissement': {
@@ -409,6 +450,8 @@ const rootRouteChildren: RootRouteChildren = {
   HydrocurageRoute: HydrocurageRoute,
   InspectionCameraRoute: InspectionCameraRoute,
   InterventionRoute: InterventionRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
+  PolitiqueConfidentialiteRoute: PolitiqueConfidentialiteRoute,
   PompageAssainissementRoute: PompageAssainissementRoute,
   SanitaireRoute: SanitaireRoute,
   ServicesRoute: ServicesRoute,
