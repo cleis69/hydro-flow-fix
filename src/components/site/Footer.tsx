@@ -1,11 +1,18 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, Clock, MapPin } from "lucide-react";
+import { Phone, Clock, MapPin, Mail, MessageCircle, Timer } from "lucide-react";
 import { COMPANY, SERVICES, DEPARTEMENTS } from "@/lib/site-data";
+
+const INFOS = [
+  { to: "/mentions-legales", label: "Mentions légales" },
+  { to: "/politique-confidentialite", label: "Politique de confidentialité" },
+  { to: "/a-propos", label: "À propos" },
+  { to: "/blog", label: "Blog" },
+] as const;
 
 export function Footer() {
   return (
     <footer className="border-t border-border bg-surface/40">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:py-20">
+      <div className="mx-auto grid gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:py-20 max-w-7xl">
         <div>
           <p className="font-display text-2xl font-black uppercase tracking-tight">
             Hydro<span className="text-primary">-</span>Curage
@@ -15,25 +22,47 @@ export function Footer() {
           </p>
           <ul className="mt-5 space-y-2 text-sm">
             <li className="flex items-center gap-2">
-              <Phone className="size-4 text-primary" aria-hidden="true" />
+              <Phone className="size-4 shrink-0 text-primary" aria-hidden="true" />
               <a href={COMPANY.phoneHref} className="font-semibold hover:text-primary">
                 {COMPANY.phone}
               </a>
             </li>
-            <li className="flex items-center gap-2 text-muted-foreground">
-              <Clock className="size-4 text-primary" aria-hidden="true" />
-              {COMPANY.availability}
+            <li className="flex items-center gap-2">
+              <Mail className="size-4 shrink-0 text-primary" aria-hidden="true" />
+              <a
+                href={COMPANY.emailHref}
+                className="break-all font-semibold hover:text-primary"
+              >
+                {COMPANY.email}
+              </a>
             </li>
-            <li className="flex items-center gap-2 text-muted-foreground">
-              <MapPin className="size-4 text-primary" aria-hidden="true" />
-              {COMPANY.area} — 75, 77, 78, 91, 92, 93, 94, 95
+            <li className="flex items-start gap-2 text-muted-foreground">
+              <Clock className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+              {COMPANY.availabilityLong}
+            </li>
+            <li className="flex items-start gap-2 text-muted-foreground">
+              <Timer className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+              Délai moyen : {COMPANY.delai}
+            </li>
+            <li className="flex items-start gap-2 text-muted-foreground">
+              <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+              {COMPANY.areaLong}
             </li>
           </ul>
+          <a
+            href={COMPANY.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-surface-2 px-4 py-2.5 font-display text-sm font-bold uppercase tracking-wide text-foreground transition-colors hover:border-primary hover:text-primary"
+          >
+            <MessageCircle className="size-4 text-primary" aria-hidden="true" />
+            Écrire sur WhatsApp
+          </a>
         </div>
 
-        <nav aria-label="Services" className="lg:col-span-2">
+        <nav aria-label="Services">
           <h2 className="eyebrow">Services</h2>
-          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+          <ul className="mt-4 grid gap-2">
             {SERVICES.map((s) => (
               <li key={s.slug}>
                 <Link
@@ -44,6 +73,14 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                to="/assurance-decennale"
+                className="text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                Assurance décennale
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -61,6 +98,30 @@ export function Footer() {
                     {d.code} — {d.name}
                   </span>
                 )}
+              </li>
+            ))}
+            <li>
+              <Link
+                to="/zones"
+                className="text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                Toutes les zones
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Informations">
+          <h2 className="eyebrow">Informations</h2>
+          <ul className="mt-4 space-y-2">
+            {INFOS.map((i) => (
+              <li key={i.to}>
+                <Link
+                  to={i.to}
+                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {i.label}
+                </Link>
               </li>
             ))}
           </ul>

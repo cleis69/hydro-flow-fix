@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, MapPin, Phone } from "lucide-react";
+import { Clock, MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { TrustMarquee } from "@/components/site/Marquee";
 import { Breadcrumbs } from "@/components/site/ServicePage";
@@ -57,14 +57,30 @@ function Page() {
               </a>
             </li>
             <li className="surface-panel flex items-center gap-4 p-5">
+              <Mail className="size-5 shrink-0 text-primary" aria-hidden="true" />
+              <a href={COMPANY.emailHref} className="break-all font-semibold">
+                {COMPANY.email}
+              </a>
+            </li>
+            <li className="surface-panel flex items-center gap-4 p-5">
               <Clock className="size-5 shrink-0 text-primary" aria-hidden="true" />
-              <span>{COMPANY.availability}</span>
+              <span>{COMPANY.availabilityLong}</span>
             </li>
             <li className="surface-panel flex items-center gap-4 p-5">
               <MapPin className="size-5 shrink-0 text-primary" aria-hidden="true" />
-              <span>Île-de-France — 75, 77, 78, 91, 92, 93, 94, 95</span>
+              <span>{COMPANY.areaLong}</span>
             </li>
           </ul>
+          <a
+            href={COMPANY.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-xl border border-border bg-surface-2 px-6 font-display text-base font-bold uppercase tracking-wide text-foreground transition-colors hover:border-primary hover:text-primary sm:w-auto"
+          >
+            <MessageCircle className="size-5 text-primary" aria-hidden="true" />
+            Nous écrire sur WhatsApp
+          </a>
+
         </div>
         <QuoteForm />
       </section>
