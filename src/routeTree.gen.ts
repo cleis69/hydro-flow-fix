@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as AssuranceDecennaleRouteImport } from './routes/assurance-decennale'
 import { Route as BacAGraisseRouteImport } from './routes/bac-a-graisse'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as CanalisationsRouteImport } from './routes/canalisations'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CurageCanalisationRouteImport } from './routes/curage-canalisation'
@@ -31,6 +30,8 @@ import { Route as SystemeRelevageRouteImport } from './routes/systeme-relevage'
 import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as UrgenceRouteImport } from './routes/urgence'
 import { Route as ZonesRouteImport } from './routes/zones'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as DebouchageCanalisationIndexRouteImport } from './routes/debouchage-canalisation.index'
 import { Route as DebouchageCanalisationHautsDeSeineRouteImport } from './routes/debouchage-canalisation.hauts-de-seine'
 import { Route as DebouchageCanalisationParisRouteImport } from './routes/debouchage-canalisation.paris'
@@ -54,11 +55,6 @@ const AssuranceDecennaleRoute = AssuranceDecennaleRouteImport.update({
 const BacAGraisseRoute = BacAGraisseRouteImport.update({
   id: '/bac-a-graisse',
   path: '/bac-a-graisse',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CanalisationsRoute = CanalisationsRouteImport.update({
@@ -147,6 +143,16 @@ const ZonesRoute = ZonesRouteImport.update({
   path: '/zones',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DebouchageCanalisationIndexRoute =
   DebouchageCanalisationIndexRouteImport.update({
     id: '/debouchage-canalisation/',
@@ -177,7 +183,6 @@ export interface FileRoutesByFullPath {
   '/a-propos': typeof AProposRoute
   '/assurance-decennale': typeof AssuranceDecennaleRoute
   '/bac-a-graisse': typeof BacAGraisseRoute
-  '/blog': typeof BlogRoute
   '/canalisations': typeof CanalisationsRoute
   '/contact': typeof ContactRoute
   '/curage-canalisation': typeof CurageCanalisationRoute
@@ -195,9 +200,11 @@ export interface FileRoutesByFullPath {
   '/tarifs': typeof TarifsRoute
   '/urgence': typeof UrgenceRoute
   '/zones': typeof ZonesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/debouchage-canalisation/hauts-de-seine': typeof DebouchageCanalisationHautsDeSeineRoute
   '/debouchage-canalisation/paris': typeof DebouchageCanalisationParisRoute
   '/debouchage-canalisation/seine-saint-denis': typeof DebouchageCanalisationSeineSaintDenisRoute
+  '/blog/': typeof BlogIndexRoute
   '/debouchage-canalisation/': typeof DebouchageCanalisationIndexRoute
 }
 export interface FileRoutesByTo {
@@ -205,7 +212,6 @@ export interface FileRoutesByTo {
   '/a-propos': typeof AProposRoute
   '/assurance-decennale': typeof AssuranceDecennaleRoute
   '/bac-a-graisse': typeof BacAGraisseRoute
-  '/blog': typeof BlogRoute
   '/canalisations': typeof CanalisationsRoute
   '/contact': typeof ContactRoute
   '/curage-canalisation': typeof CurageCanalisationRoute
@@ -223,9 +229,11 @@ export interface FileRoutesByTo {
   '/tarifs': typeof TarifsRoute
   '/urgence': typeof UrgenceRoute
   '/zones': typeof ZonesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/debouchage-canalisation/hauts-de-seine': typeof DebouchageCanalisationHautsDeSeineRoute
   '/debouchage-canalisation/paris': typeof DebouchageCanalisationParisRoute
   '/debouchage-canalisation/seine-saint-denis': typeof DebouchageCanalisationSeineSaintDenisRoute
+  '/blog': typeof BlogIndexRoute
   '/debouchage-canalisation': typeof DebouchageCanalisationIndexRoute
 }
 export interface FileRoutesById {
@@ -234,7 +242,6 @@ export interface FileRoutesById {
   '/a-propos': typeof AProposRoute
   '/assurance-decennale': typeof AssuranceDecennaleRoute
   '/bac-a-graisse': typeof BacAGraisseRoute
-  '/blog': typeof BlogRoute
   '/canalisations': typeof CanalisationsRoute
   '/contact': typeof ContactRoute
   '/curage-canalisation': typeof CurageCanalisationRoute
@@ -252,9 +259,11 @@ export interface FileRoutesById {
   '/tarifs': typeof TarifsRoute
   '/urgence': typeof UrgenceRoute
   '/zones': typeof ZonesRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/debouchage-canalisation/hauts-de-seine': typeof DebouchageCanalisationHautsDeSeineRoute
   '/debouchage-canalisation/paris': typeof DebouchageCanalisationParisRoute
   '/debouchage-canalisation/seine-saint-denis': typeof DebouchageCanalisationSeineSaintDenisRoute
+  '/blog/': typeof BlogIndexRoute
   '/debouchage-canalisation/': typeof DebouchageCanalisationIndexRoute
 }
 export interface FileRouteTypes {
@@ -264,7 +273,6 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/assurance-decennale'
     | '/bac-a-graisse'
-    | '/blog'
     | '/canalisations'
     | '/contact'
     | '/curage-canalisation'
@@ -282,9 +290,11 @@ export interface FileRouteTypes {
     | '/tarifs'
     | '/urgence'
     | '/zones'
+    | '/blog/$slug'
     | '/debouchage-canalisation/hauts-de-seine'
     | '/debouchage-canalisation/paris'
     | '/debouchage-canalisation/seine-saint-denis'
+    | '/blog/'
     | '/debouchage-canalisation/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -292,7 +302,6 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/assurance-decennale'
     | '/bac-a-graisse'
-    | '/blog'
     | '/canalisations'
     | '/contact'
     | '/curage-canalisation'
@@ -310,9 +319,11 @@ export interface FileRouteTypes {
     | '/tarifs'
     | '/urgence'
     | '/zones'
+    | '/blog/$slug'
     | '/debouchage-canalisation/hauts-de-seine'
     | '/debouchage-canalisation/paris'
     | '/debouchage-canalisation/seine-saint-denis'
+    | '/blog'
     | '/debouchage-canalisation'
   id:
     | '__root__'
@@ -320,7 +331,6 @@ export interface FileRouteTypes {
     | '/a-propos'
     | '/assurance-decennale'
     | '/bac-a-graisse'
-    | '/blog'
     | '/canalisations'
     | '/contact'
     | '/curage-canalisation'
@@ -338,9 +348,11 @@ export interface FileRouteTypes {
     | '/tarifs'
     | '/urgence'
     | '/zones'
+    | '/blog/$slug'
     | '/debouchage-canalisation/hauts-de-seine'
     | '/debouchage-canalisation/paris'
     | '/debouchage-canalisation/seine-saint-denis'
+    | '/blog/'
     | '/debouchage-canalisation/'
   fileRoutesById: FileRoutesById
 }
@@ -349,7 +361,6 @@ export interface RootRouteChildren {
   AProposRoute: typeof AProposRoute
   AssuranceDecennaleRoute: typeof AssuranceDecennaleRoute
   BacAGraisseRoute: typeof BacAGraisseRoute
-  BlogRoute: typeof BlogRoute
   CanalisationsRoute: typeof CanalisationsRoute
   ContactRoute: typeof ContactRoute
   CurageCanalisationRoute: typeof CurageCanalisationRoute
@@ -367,9 +378,11 @@ export interface RootRouteChildren {
   TarifsRoute: typeof TarifsRoute
   UrgenceRoute: typeof UrgenceRoute
   ZonesRoute: typeof ZonesRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   DebouchageCanalisationHautsDeSeineRoute: typeof DebouchageCanalisationHautsDeSeineRoute
   DebouchageCanalisationParisRoute: typeof DebouchageCanalisationParisRoute
   DebouchageCanalisationSeineSaintDenisRoute: typeof DebouchageCanalisationSeineSaintDenisRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   DebouchageCanalisationIndexRoute: typeof DebouchageCanalisationIndexRoute
 }
 
@@ -401,13 +414,6 @@ declare module '@tanstack/react-router' {
       path: '/bac-a-graisse'
       fullPath: '/bac-a-graisse'
       preLoaderRoute: typeof BacAGraisseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/canalisations': {
@@ -529,6 +535,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ZonesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/debouchage-canalisation/': {
       id: '/debouchage-canalisation/'
       path: '/debouchage-canalisation'
@@ -565,7 +585,6 @@ const rootRouteChildren: RootRouteChildren = {
   AProposRoute: AProposRoute,
   AssuranceDecennaleRoute: AssuranceDecennaleRoute,
   BacAGraisseRoute: BacAGraisseRoute,
-  BlogRoute: BlogRoute,
   CanalisationsRoute: CanalisationsRoute,
   ContactRoute: ContactRoute,
   CurageCanalisationRoute: CurageCanalisationRoute,
@@ -583,11 +602,13 @@ const rootRouteChildren: RootRouteChildren = {
   TarifsRoute: TarifsRoute,
   UrgenceRoute: UrgenceRoute,
   ZonesRoute: ZonesRoute,
+  BlogSlugRoute: BlogSlugRoute,
   DebouchageCanalisationHautsDeSeineRoute:
     DebouchageCanalisationHautsDeSeineRoute,
   DebouchageCanalisationParisRoute: DebouchageCanalisationParisRoute,
   DebouchageCanalisationSeineSaintDenisRoute:
     DebouchageCanalisationSeineSaintDenisRoute,
+  BlogIndexRoute: BlogIndexRoute,
   DebouchageCanalisationIndexRoute: DebouchageCanalisationIndexRoute,
 }
 export const routeTree = rootRouteImport

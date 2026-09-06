@@ -1,30 +1,105 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Phone, ChevronDown, Siren } from "lucide-react";
 import { COMPANY, SERVICES } from "@/lib/site-data";
+import { ZONES } from "@/lib/zones-data";
 import { cn } from "@/lib/utils";
 
-const SERVICE_LINKS = [
+type NavLeaf = { to: string; label: string };
+type NavItem = { to: string; label: string; children?: NavLeaf[] };
+
+const SERVICE_LINKS: NavLeaf[] = [
   ...SERVICES.map((s) => ({ to: s.to, label: s.title })),
   { to: "/assurance-decennale", label: "Assurance décennale" },
 ];
 
-const NAV = [
+const ZONE_LINKS: NavLeaf[] = ZONES.map((z) => ({
+  to: z.to ?? "/zones",
+  label: `${z.name} (${z.code})`,
+}));
+
+const ENTREPRISE_LINKS: NavLeaf[] = [
+  { to: "/realisations", label: "Réalisations" },
+  { to: "/a-propos", label: "À propos" },
+  { to: "/intervention", label: "Nos interventions" },
+  { to: "/faq", label: "FAQ" },
+];
+
+const NAV: NavItem[] = [
   { to: "/", label: "Accueil" },
   { to: "/services", label: "Services", children: SERVICE_LINKS },
-  { to: "/zones", label: "Zones d'intervention" },
-  { to: "/realisations", label: "Réalisations" },
+  { to: "/zones", label: "Zones", children: ZONE_LINKS },
   { to: "/tarifs", label: "Tarifs" },
   { to: "/blog", label: "Blog" },
-  { to: "/a-propos", label: "À propos" },
-  { to: "/faq", label: "FAQ" },
+  { to: "/a-propos", label: "L'entreprise", children: ENTREPRISE_LINKS },
   { to: "/contact", label: "Contact" },
-] as const;
+];
+
+const LINK_BASE =
+  "whitespace-nowrap rounded-md px-2 py-2 font-display text-sm font-bold uppercase tracking-wide text-foreground/85 transition-colors hover:text-primary";
+
+function DesktopDropdown({ item }: { item: NavItem & { children: NavLeaf[] } }) {
+  const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  const cancelClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  };
+  const scheduleClose = () => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => setOpen(false), 120);
+  };
+
+  useEffect(() => () => cancelClose(), []);
+
+  return (
+    <li
+      className="relative"
+      onMouseEnter={() => {
+        cancelClose();
+        setOpen(true);
+      }}
+      onMouseLeave={scheduleClose}
+    >
+      <div className="flex items-center">
+        <Link to={item.to} activeProps={{ className: "text-primary" }} className={LINK_BASE}>
+          {item.label}
+        </Link>
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-label={`Afficher le menu ${item.label}`}
+          onClick={() => setOpen((v) => !v)}
+          className="shrink-0 rounded-md p-1 text-foreground/70 transition-colors hover:text-primary"
+        >
+          <ChevronDown
+            className={cn("size-4 transition-transform", open && "rotate-180")}
+            aria-hidden="true"
+          />
+        </button>
+      </div>
+      {open && (
+        <ul className="absolute left-0 top-full z-50 w-72 rounded-xl border border-border bg-background p-2 shadow-lift">
+          {item.children.map((c) => (
+            <li key={`${item.label}-${c.label}`}>
+              <Link
+                to={c.to}
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3 py-2 text-sm font-semibold text-foreground/85 transition-colors hover:bg-surface-2 hover:text-primary"
+              >
+                {c.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -49,10 +124,10 @@ export function Header() {
           : "border-b border-transparent bg-background/40 backdrop-blur-sm",
       )}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6 lg:py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:py-4">
         <Link
           to="/"
-          className="flex min-w-0 items-center gap-3"
+          className="flex shrink-0 items-center gap-3"
           aria-label="Hydro-Curage — accueil"
         >
           <span
@@ -61,74 +136,32 @@ export function Header() {
           >
             H
           </span>
-          <span className="min-w-0">
-            <span className="block truncate font-display text-lg font-black uppercase leading-none tracking-tight">
+          <span>
+            <span className="block whitespace-nowrap font-display text-lg font-black uppercase leading-none tracking-tight">
               Hydro<span className="text-primary">-</span>Curage
             </span>
-            <span className="block truncate font-mono text-[0.62rem] uppercase tracking-[0.18em] text-muted-foreground">
+            <span className="hidden whitespace-nowrap font-mono text-[0.62rem] uppercase tracking-[0.18em] text-muted-foreground 2xl:block">
               {COMPANY.availability} • {COMPANY.area}
             </span>
           </span>
         </Link>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <nav aria-label="Navigation principale" className="hidden xl:block">
             <ul className="flex items-center gap-0.5">
               {NAV.map((item) =>
-                "children" in item ? (
-                  <li
-                    key={item.to}
-                    className="relative"
-                    onMouseEnter={() => setServicesOpen(true)}
-                    onMouseLeave={() => setServicesOpen(false)}
-                  >
-                    <div className="flex items-center">
-                      <Link
-                        to={item.to}
-                        activeProps={{ className: "text-primary" }}
-                        className="rounded-md px-2.5 py-2 font-display text-sm font-bold uppercase tracking-wide text-foreground/85 transition-colors hover:text-primary"
-                      >
-                        {item.label}
-                      </Link>
-                      <button
-                        type="button"
-                        aria-expanded={servicesOpen}
-                        aria-label="Afficher les services"
-                        onClick={() => setServicesOpen((v) => !v)}
-                        className="rounded-md p-1 text-foreground/70 transition-colors hover:text-primary"
-                      >
-                        <ChevronDown
-                          className={cn(
-                            "size-4 transition-transform",
-                            servicesOpen && "rotate-180",
-                          )}
-                          aria-hidden="true"
-                        />
-                      </button>
-                    </div>
-                    {servicesOpen && (
-                      <ul className="absolute left-0 top-full z-50 w-72 rounded-xl border border-border bg-background p-2 shadow-lift">
-                        {item.children.map((c) => (
-                          <li key={c.to}>
-                            <Link
-                              to={c.to}
-                              onClick={() => setServicesOpen(false)}
-                              className="block rounded-lg px-3 py-2 text-sm font-semibold text-foreground/85 transition-colors hover:bg-surface-2 hover:text-primary"
-                            >
-                              {c.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
+                item.children ? (
+                  <DesktopDropdown
+                    key={item.label}
+                    item={item as NavItem & { children: NavLeaf[] }}
+                  />
                 ) : (
-                  <li key={item.to}>
+                  <li key={item.label}>
                     <Link
                       to={item.to}
                       activeOptions={{ exact: item.to === "/" }}
                       activeProps={{ className: "text-primary" }}
-                      className="rounded-md px-2.5 py-2 font-display text-sm font-bold uppercase tracking-wide text-foreground/85 transition-colors hover:text-primary"
+                      className={LINK_BASE}
                     >
                       {item.label}
                     </Link>
@@ -138,10 +171,10 @@ export function Header() {
               <li>
                 <Link
                   to="/urgence"
-                  className="ml-1 inline-flex items-center gap-1.5 rounded-md border border-primary/60 px-2.5 py-2 font-display text-sm font-extrabold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10"
+                  className="ml-1 inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md border border-primary/60 px-2.5 py-2 font-display text-sm font-extrabold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10"
                 >
-                  <Siren className="size-4" aria-hidden="true" />
-                  Urgence 24h/24
+                  <Siren className="size-4 shrink-0" aria-hidden="true" />
+                  Urgence
                 </Link>
               </li>
             </ul>
@@ -149,16 +182,16 @@ export function Header() {
 
           <a
             href={COMPANY.phoneHref}
-            className="hidden min-h-11 items-center gap-2 rounded-lg bg-signal-gradient px-4 py-2.5 font-display text-sm font-extrabold uppercase tracking-wide text-primary-foreground transition-transform hover:-translate-y-0.5 sm:inline-flex"
+            className="hidden min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-lg bg-signal-gradient px-4 py-2.5 font-display text-sm font-extrabold uppercase tracking-wide text-primary-foreground transition-transform hover:-translate-y-0.5 sm:inline-flex"
             aria-label={`Appeler Hydro-Curage au ${COMPANY.phone}`}
           >
-            <Phone className="size-4" aria-hidden="true" />
+            <Phone className="size-4 shrink-0" aria-hidden="true" />
             {COMPANY.phone}
           </a>
 
           <a
             href={COMPANY.phoneHref}
-            className="inline-flex size-11 items-center justify-center rounded-lg bg-signal-gradient text-primary-foreground sm:hidden"
+            className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg bg-signal-gradient text-primary-foreground sm:hidden"
             aria-label={`Appeler Hydro-Curage au ${COMPANY.phone}`}
           >
             <Phone className="size-5" aria-hidden="true" />
@@ -170,7 +203,7 @@ export function Header() {
             aria-expanded={open}
             aria-controls="menu-mobile"
             aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-            className="inline-flex size-11 items-center justify-center rounded-lg border border-border bg-surface text-foreground xl:hidden"
+            className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg border border-border bg-surface text-foreground xl:hidden"
           >
             {open ? (
               <X className="size-5" aria-hidden="true" />
@@ -189,7 +222,7 @@ export function Header() {
           <nav aria-label="Navigation mobile" className="px-4 py-3 sm:px-6">
             <ul className="flex flex-col">
               {NAV.map((item) => (
-                <li key={item.to}>
+                <li key={item.label}>
                   <Link
                     to={item.to}
                     onClick={() => setOpen(false)}
@@ -197,10 +230,10 @@ export function Header() {
                   >
                     {item.label}
                   </Link>
-                  {"children" in item && (
+                  {item.children && (
                     <ul className="border-b border-border/60 pb-3">
                       {item.children.map((c) => (
-                        <li key={c.to}>
+                        <li key={`${item.label}-${c.label}`}>
                           <Link
                             to={c.to}
                             onClick={() => setOpen(false)}
