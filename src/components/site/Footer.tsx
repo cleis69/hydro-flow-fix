@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, Clock, MapPin, Mail, MessageCircle, Timer } from "lucide-react";
 import { COMPANY, SERVICES, DEPARTEMENTS } from "@/lib/site-data";
+import logo from "@/assets/logo-hydro-curage.webp";
 
 const INFOS = [
   { to: "/mentions-legales", label: "Mentions légales" },
@@ -14,6 +15,15 @@ export function Footer() {
     <footer className="border-t border-border bg-surface/40">
       <div className="mx-auto grid gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:py-20 max-w-7xl">
         <div>
+          <img
+            src={logo}
+            alt="Hydro-Curage — débouchage services, spécialiste hydrocureur en Île-de-France"
+            width={132}
+            height={132}
+            loading="lazy"
+            decoding="async"
+            className="mb-4 size-24 object-contain"
+          />
           <p className="font-display text-2xl font-black uppercase tracking-tight">
             Hydro<span className="text-primary">-</span>Curage
           </p>
@@ -29,10 +39,7 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Mail className="size-4 shrink-0 text-primary" aria-hidden="true" />
-              <a
-                href={COMPANY.emailHref}
-                className="break-all font-semibold hover:text-primary"
-              >
+              <a href={COMPANY.emailHref} className="break-all font-semibold hover:text-primary">
                 {COMPANY.email}
               </a>
             </li>

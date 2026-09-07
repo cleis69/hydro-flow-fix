@@ -24,8 +24,8 @@ export function BeforeAfter() {
           Avant / après curage
         </h2>
         <p className="mt-4 max-w-2xl text-muted-foreground">
-          Déplacez le curseur pour comparer une canalisation obstruée et la même canalisation
-          après hydrocurage.
+          Déplacez le curseur pour comparer une canalisation obstruée et la même canalisation après
+          hydrocurage.
         </p>
       </Reveal>
 
@@ -85,7 +85,7 @@ export function BeforeAfter() {
             value={Math.round(pos)}
             onChange={(e) => setPos(Number(e.target.value))}
             aria-label="Comparer avant et après curage"
-            className="absolute inset-x-0 bottom-4 mx-auto w-[85%] cursor-ew-resize accent-[oklch(0.7_0.19_45)]"
+            className="absolute inset-x-0 bottom-4 mx-auto w-[85%] cursor-ew-resize accent-[oklch(0.71_0.128_228)]"
           />
         </div>
       </Reveal>

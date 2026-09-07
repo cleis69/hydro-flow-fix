@@ -18,7 +18,7 @@ export function CallButton({
       aria-label={`Appeler Hydro-Curage au ${COMPANY.phone}`}
       className={cn(
         "group relative inline-flex min-h-14 items-center justify-center gap-3 rounded-xl bg-signal-gradient px-6 py-4 font-display text-base font-extrabold uppercase tracking-wide text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0",
-        "shadow-[0_18px_40px_-18px_oklch(0.7_0.19_45/0.9)]",
+        "shadow-[0_18px_40px_-18px_oklch(0.71_0.128_228/0.9)]",
         className,
       )}
     >
