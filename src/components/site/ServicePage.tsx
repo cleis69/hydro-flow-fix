@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
 import type { ReactNode } from "react";
 import { SERVICES, type ServiceDef } from "@/lib/site-data";
+import { SERVICE_IMAGES } from "@/lib/images";
 import { CallButton, QuoteButton } from "./CallButtons";
 import { Reveal } from "./Reveal";
 import { QuoteSection } from "./QuoteForm";
@@ -44,6 +45,7 @@ export function ServicePage({
   children?: ReactNode;
 }) {
   const related = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 4);
+  const illustration = SERVICE_IMAGES[service.slug];
 
   return (
     <>
@@ -59,6 +61,19 @@ export function ServicePage({
             <CallButton />
             <QuoteButton />
           </div>
+          {illustration && (
+            <figure className="mt-10 overflow-hidden rounded-3xl border border-border">
+              <img
+                src={illustration.src}
+                alt={illustration.alt}
+                width={1200}
+                height={675}
+                loading="eager"
+                decoding="async"
+                className="aspect-[16/9] w-full object-cover"
+              />
+            </figure>
+          )}
         </div>
       </section>
 

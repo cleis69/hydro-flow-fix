@@ -197,3 +197,124 @@ export const DECENNALE = {
     },
   ],
 } as const;
+
+/** Grille tarifaire indicative — le prix exact est fixé par devis gratuit sur place. */
+export const TARIFS_GARANTIES = [
+  {
+    title: "Devis gratuit",
+    text: "Le déplacement et le diagnostic sont offerts, sans engagement.",
+  },
+  {
+    title: "Prix fixé avant intervention",
+    text: "Aucune surprise : le montant est validé avec vous avant de commencer.",
+  },
+  {
+    title: "Pas de frais cachés",
+    text: "Le tarif convenu est le tarif final. Pas de supplément non prévu.",
+  },
+] as const;
+
+export const TARIFS_GRILLE = [
+  {
+    categorie: "Dégorgement / Débouchage",
+    lignes: [
+      { label: "Débouchage évier / lavabo", prix: "Sur devis" },
+      { label: "Débouchage WC", prix: "Sur devis" },
+      { label: "Débouchage douche / baignoire", prix: "Sur devis" },
+      { label: "Dégorgement colonne d'immeuble", prix: "Sur devis" },
+    ],
+  },
+  {
+    categorie: "Curage hydrodynamique",
+    lignes: [
+      { label: "Curage haute pression — résidentiel", prix: "Sur devis" },
+      { label: "Curage haute pression — professionnel", prix: "Sur devis" },
+      { label: "Curage préventif programmé", prix: "Sur devis" },
+    ],
+  },
+  {
+    categorie: "Pompage & assainissement",
+    lignes: [
+      { label: "Vidange fosse septique", prix: "Sur devis" },
+      { label: "Pompage bac à graisse", prix: "Sur devis" },
+      { label: "Pompage eaux usées", prix: "Sur devis" },
+    ],
+  },
+  {
+    categorie: "Inspection & diagnostic",
+    lignes: [
+      { label: "Inspection caméra vidéo", prix: "Sur devis" },
+      { label: "Rapport vidéo détaillé", prix: "Inclus" },
+      { label: "Diagnostic d'assainissement", prix: "Sur devis" },
+    ],
+  },
+  {
+    categorie: "Autres services",
+    lignes: [
+      { label: "Installation bac à graisse", prix: "Sur devis" },
+      { label: "Système de relevage — installation", prix: "Sur devis" },
+      { label: "Système de relevage — dépannage", prix: "Sur devis" },
+      { label: "Réparation de canalisation", prix: "Sur devis" },
+      { label: "Chemisage de canalisation", prix: "Sur devis" },
+    ],
+  },
+] as const;
+
+export const TARIFS_POURQUOI =
+  "Chaque situation est différente. Le prix dépend de la nature du bouchon, de l'accessibilité de la canalisation, du matériel nécessaire et de la durée d'intervention. C'est pourquoi nous établissons systématiquement un devis gratuit et personnalisé sur place, avant de commencer. Vous n'avez aucune obligation et aucun frais si le devis ne vous convient pas.";
+
+/** FAQ complète : les 10 questions de l'ancien site + les questions propres au nouveau. */
+export const FULL_FAQ = [
+  {
+    q: "Quel est le délai d'intervention ?",
+    a: "Nous intervenons en moyenne sous 30 minutes dans les zones urbaines d'Île-de-France. Pour les zones périurbaines, comptez 45 minutes à 1 heure maximum. Nos techniciens sont disponibles 24h/24 et 7j/7, y compris les jours fériés.",
+  },
+  {
+    q: "Le devis est-il vraiment gratuit ?",
+    a: "Oui. Le déplacement et le diagnostic sont gratuits et sans engagement. Si le devis ne vous convient pas, vous ne payez rien. Nous croyons en la transparence : vous connaissez le prix exact avant que nous commencions.",
+  },
+  {
+    q: "Quelles méthodes de débouchage utilisez-vous ?",
+    a: "Nous adaptons la méthode au type de bouchon : furet manuel ou électrique pour les bouchons simples, hydrocurage haute pression (jusqu'à 350 bars) pour les obstructions tenaces, et inspection caméra pour les cas complexes. Nous privilégions toujours la solution la plus adaptée.",
+  },
+  {
+    q: "Quelle est la différence entre débouchage et hydrocurage ?",
+    a: "Le débouchage lève l'obstruction pour rétablir l'écoulement. L'hydrocurage nettoie la paroi de la canalisation sur toute sa longueur avec de l'eau sous haute pression, ce qui limite la réapparition du bouchon.",
+  },
+  {
+    q: "Intervenez-vous le week-end et les jours fériés ?",
+    a: "Oui, nous sommes disponibles 24h/24, 7j/7, y compris le week-end et les jours fériés. Les tarifs peuvent varier pour les interventions nocturnes (22h-6h), mais le prix est toujours communiqué dans le devis préalable.",
+  },
+  {
+    q: "Faites-vous un diagnostic avant l'intervention ?",
+    a: "Le technicien identifie l'origine du problème sur place. Une inspection caméra peut être réalisée pour visualiser l'intérieur de la canalisation et localiser précisément le défaut.",
+  },
+  {
+    q: "Proposez-vous une garantie sur les interventions ?",
+    a: "Oui, toutes nos interventions sont garanties. La durée de garantie varie selon le type de prestation. Si le problème revient pendant la période de garantie, nous revenons gratuitement.",
+  },
+  {
+    q: "Pouvez-vous intervenir dans un parking souterrain ou une rue étroite ?",
+    a: "Oui. Notre hydrocureur compact accède aux parkings souterrains, rues étroites, voies privées et cours intérieures où un camion classique ne passe pas.",
+  },
+  {
+    q: "Quels types de canalisations traitez-vous ?",
+    a: "Nous intervenons sur tous types de canalisations : éviers, lavabos, WC, douches, baignoires, canalisations d'eaux usées, eaux pluviales, regards, colonnes d'immeuble, réseaux enterrés. Que ce soit chez un particulier, un professionnel ou une copropriété.",
+  },
+  {
+    q: "Comment prévenir les bouchons de canalisation ?",
+    a: "Quelques gestes simples : utilisez des grilles de protection sur vos éviers, ne versez jamais de graisse dans l'évier, nettoyez régulièrement vos siphons, et faites réaliser un curage préventif tous les 2-3 ans. Nos techniciens vous donnent des conseils personnalisés après chaque intervention.",
+  },
+  {
+    q: "Intervenez-vous chez les professionnels ?",
+    a: "Oui, nous intervenons auprès des particuliers, professionnels, copropriétés, restaurants, hôtels et collectivités. Nous proposons également des contrats de maintenance adaptés à l'activité de nos clients professionnels.",
+  },
+  {
+    q: "Quelle est votre zone d'intervention ?",
+    a: "Nous couvrons l'ensemble de l'Île-de-France : Paris (75), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94), Yvelines (78), Essonne (91), Val-d'Oise (95) et Seine-et-Marne (77).",
+  },
+  {
+    q: "Peut-on vous contacter pour un diagnostic avant achat immobilier ?",
+    a: "Oui, nous réalisons des inspections caméra de canalisations dans le cadre de diagnostics immobiliers. C'est un moyen fiable de vérifier l'état du réseau d'évacuation avant d'acheter un bien.",
+  },
+];

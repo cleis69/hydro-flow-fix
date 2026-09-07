@@ -6,6 +6,7 @@ import { FaqSection } from "@/components/site/FaqSection";
 import { Reveal } from "@/components/site/Reveal";
 import { TrustMarquee } from "@/components/site/Marquee";
 import { DECENNALE } from "@/lib/page-data";
+import { SERVICE_IMAGES } from "@/lib/images";
 import { pageMeta, breadcrumbLd, faqLd, serviceLd } from "@/lib/seo";
 
 const META = {
@@ -61,6 +62,17 @@ function Page() {
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
           <Reveal>
+            <figure className="mb-10 overflow-hidden rounded-3xl border border-border">
+              <img
+                src={SERVICE_IMAGES["assurance-decennale"]!.src}
+                alt={SERVICE_IMAGES["assurance-decennale"]!.alt}
+                width={1200}
+                height={675}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[16/9] w-full object-cover"
+              />
+            </figure>
             <div className="space-y-10">
               {DECENNALE.blocks.map((b) => (
                 <section key={b.title}>

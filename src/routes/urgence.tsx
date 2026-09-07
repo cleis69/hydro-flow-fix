@@ -6,6 +6,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { CallButton, QuoteButton } from "@/components/site/CallButtons";
 import { TrustMarquee } from "@/components/site/Marquee";
 import { URGENCE } from "@/lib/page-data";
+import { IMAGES } from "@/lib/images";
 import { COMPANY } from "@/lib/site-data";
 import { pageMeta, breadcrumbLd } from "@/lib/seo";
 
@@ -128,17 +129,26 @@ function Page() {
           </Reveal>
 
           <Reveal delay={100}>
-            <aside className="surface-panel p-6 lg:p-8">
-              <h2 className="font-display text-2xl font-black uppercase leading-tight tracking-tight">
-                Ne restez pas avec une canalisation bouchée
-              </h2>
-              <p className="mt-3 text-muted-foreground">
-                Plus vous attendez, plus ça empire. Un coup de fil et on est chez vous —{" "}
-                {COMPANY.availabilityLong}.
-              </p>
-              <div className="mt-6 flex flex-col gap-3">
-                <CallButton />
-                <QuoteButton />
+            <aside className="surface-panel overflow-hidden">
+              <img
+                src={IMAGES.urgenceNuit.src}
+                alt={IMAGES.urgenceNuit.alt}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[16/9] w-full border-b border-border object-cover"
+              />
+              <div className="p-6 lg:p-8">
+                <h2 className="font-display text-2xl font-black uppercase leading-tight tracking-tight">
+                  Ne restez pas avec une canalisation bouchée
+                </h2>
+                <p className="mt-3 text-muted-foreground">
+                  Plus vous attendez, plus ça empire. Un coup de fil et on est chez vous —{" "}
+                  {COMPANY.availabilityLong}.
+                </p>
+                <div className="mt-6 flex flex-col gap-3">
+                  <CallButton />
+                  <QuoteButton />
+                </div>
               </div>
             </aside>
           </Reveal>

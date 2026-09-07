@@ -7,6 +7,8 @@ import { COMPANY } from "@/lib/site-data";
 import { pageMeta, breadcrumbLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search: Record<string, unknown>): { urgence?: string } =>
+    typeof search["urgence"] === "string" ? { urgence: search["urgence"] } : {},
   head: () => ({
     ...pageMeta({
       title: "Contact & devis gratuit — 06 67 98 01 90 | Hydro-Curage",
@@ -46,9 +48,7 @@ function Page() {
 
       <section className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:py-20">
         <div>
-          <h2 className="font-display text-2xl font-black uppercase tracking-tight">
-            Coordonnées
-          </h2>
+          <h2 className="font-display text-2xl font-black uppercase tracking-tight">Coordonnées</h2>
           <ul className="mt-6 space-y-4">
             <li className="surface-panel flex items-center gap-4 p-5">
               <Phone className="size-5 shrink-0 text-primary" aria-hidden="true" />
@@ -80,7 +80,6 @@ function Page() {
             <MessageCircle className="size-5 text-primary" aria-hidden="true" />
             Nous écrire sur WhatsApp
           </a>
-
         </div>
         <QuoteForm />
       </section>

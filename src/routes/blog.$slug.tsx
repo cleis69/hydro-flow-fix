@@ -5,6 +5,7 @@ import { QuoteSection } from "@/components/site/QuoteForm";
 import { Reveal } from "@/components/site/Reveal";
 import { CallButton, QuoteButton } from "@/components/site/CallButtons";
 import { ARTICLES, getArticle } from "@/lib/blog-data";
+import { ARTICLE_IMAGES } from "@/lib/images";
 import { pageMeta, breadcrumbLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -55,6 +56,7 @@ export const Route = createFileRoute("/blog/$slug")({
 function Page() {
   const article = Route.useLoaderData();
   const others = ARTICLES.filter((a) => a.slug !== article.slug).slice(0, 3);
+  const illustration = ARTICLE_IMAGES[article.slug];
 
   return (
     <>
@@ -77,6 +79,19 @@ function Page() {
             {article.title}
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{article.excerpt}</p>
+          {illustration && (
+            <figure className="mt-8 overflow-hidden rounded-3xl border border-border">
+              <img
+                src={illustration.src}
+                alt={illustration.alt}
+                width={1200}
+                height={675}
+                loading="eager"
+                decoding="async"
+                className="aspect-[16/9] w-full object-cover"
+              />
+            </figure>
+          )}
         </div>
       </section>
 

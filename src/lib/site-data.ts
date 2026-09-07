@@ -4,6 +4,7 @@ export const COMPANY = {
   phoneHref: "tel:+33667980190",
   email: "hydropro.services.idf@gmail.com",
   emailHref: "mailto:hydropro.services.idf@gmail.com",
+  whatsappNumber: "33667980190",
   whatsapp:
     "https://wa.me/33667980190?text=Bonjour%2C%20j'ai%20un%20probl%C3%A8me%20de%20canalisation%20et%20j'aimerais%20un%20devis%20gratuit.",
   availability: "24h/24 — 7j/7",
@@ -12,7 +13,6 @@ export const COMPANY = {
   areaLong: "Île-de-France — 8 départements (75, 77, 78, 91, 92, 93, 94, 95)",
   delai: "30 minutes en zone urbaine, 45 min à 1h en zone périurbaine",
 } as const;
-
 
 export type ServiceKey =
   | "debouchage-canalisation"

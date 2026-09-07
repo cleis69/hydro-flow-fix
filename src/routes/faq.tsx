@@ -3,7 +3,7 @@ import { FaqSection } from "@/components/site/FaqSection";
 import { QuoteSection } from "@/components/site/QuoteForm";
 import { Breadcrumbs } from "@/components/site/ServicePage";
 import { CallButton } from "@/components/site/CallButtons";
-import { FAQ } from "@/lib/site-data";
+import { FULL_FAQ } from "@/lib/page-data";
 import { pageMeta, faqLd, breadcrumbLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/faq")({
@@ -11,11 +11,11 @@ export const Route = createFileRoute("/faq")({
     ...pageMeta({
       title: "FAQ — débouchage, curage et interventions | Hydro-Curage",
       description:
-        "Réponses aux questions fréquentes sur le débouchage, le curage, les zones couvertes en Île-de-France, les délais et le devis gratuit d'Hydro-Curage.",
+        "13 réponses sur le débouchage, le curage, les délais d'intervention, les garanties, les zones couvertes en Île-de-France et le devis gratuit d'Hydro-Curage.",
       url: "/faq",
     }),
     scripts: [
-      { type: "application/ld+json", children: JSON.stringify(faqLd(FAQ)) },
+      { type: "application/ld+json", children: JSON.stringify(faqLd(FULL_FAQ)) },
       {
         type: "application/ld+json",
         children: JSON.stringify(
@@ -38,12 +38,15 @@ function Page() {
           <Breadcrumbs items={[{ label: "Accueil", to: "/" }, { label: "FAQ" }]} />
           <p className="eyebrow">Questions fréquentes</p>
           <h1 className="mt-3 max-w-4xl font-display text-3xl font-black uppercase leading-[1.02] sm:text-5xl lg:text-6xl">
-            Tout savoir avant d'appeler
+            Vos questions, nos réponses
           </h1>
+          <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
+            Tout ce que vous devez savoir sur nos services de débouchage et d'assainissement.
+          </p>
           <CallButton className="mt-8" />
         </div>
       </section>
-      <FaqSection />
+      <FaqSection items={FULL_FAQ} />
       <QuoteSection />
     </>
   );

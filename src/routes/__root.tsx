@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { AlertTicker } from "@/components/site/AlertTicker";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { FloatingCallBar } from "@/components/site/FloatingCallBar";
@@ -48,7 +49,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-[70vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
-        <h1 className="font-display text-xl font-bold uppercase">Cette page n'a pas pu s'afficher</h1>
+        <h1 className="font-display text-xl font-bold uppercase">
+          Cette page n'a pas pu s'afficher
+        </h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Réessayez ou appelez-nous directement au 06 67 98 01 90.
         </p>
@@ -101,9 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
-    scripts: [
-      { type: "application/ld+json", children: JSON.stringify(localBusinessLd) },
-    ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(localBusinessLd) }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -136,6 +137,7 @@ function RootComponent() {
       >
         Aller au contenu
       </a>
+      <AlertTicker />
       <Header />
       <main id="contenu" className="pb-24 lg:pb-0">
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}

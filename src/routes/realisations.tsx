@@ -6,6 +6,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { BeforeAfter } from "@/components/site/BeforeAfter";
 import { TrustMarquee } from "@/components/site/Marquee";
 import { REALISATIONS } from "@/lib/page-data";
+import { REALISATION_IMAGES } from "@/lib/images";
 import { pageMeta, breadcrumbLd } from "@/lib/seo";
 
 const META = {
@@ -59,21 +60,32 @@ function Page() {
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {REALISATIONS.map((r, i) => (
               <Reveal key={r.title} delay={i * 60}>
-                <article className="surface-panel flex h-full flex-col p-6">
-                  <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-primary">
-                    <MapPin className="size-4 shrink-0" aria-hidden="true" />
-                    {r.lieu}
-                  </p>
-                  <h3 className="mt-3 font-display text-lg font-black uppercase leading-tight tracking-tight">
-                    {r.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-                    {r.text}
-                  </p>
-                  <p className="mt-5 flex items-start gap-2 border-t border-border pt-4 text-sm font-semibold text-foreground/90">
-                    <Wrench className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
-                    {r.technique}
-                  </p>
+                <article className="surface-panel flex h-full flex-col overflow-hidden">
+                  {REALISATION_IMAGES[i] && (
+                    <img
+                      src={REALISATION_IMAGES[i].src}
+                      alt={REALISATION_IMAGES[i].alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="aspect-[16/10] w-full border-b border-border object-cover"
+                    />
+                  )}
+                  <div className="flex flex-1 flex-col p-6">
+                    <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-primary">
+                      <MapPin className="size-4 shrink-0" aria-hidden="true" />
+                      {r.lieu}
+                    </p>
+                    <h3 className="mt-3 font-display text-lg font-black uppercase leading-tight tracking-tight">
+                      {r.title}
+                    </h3>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                      {r.text}
+                    </p>
+                    <p className="mt-5 flex items-start gap-2 border-t border-border pt-4 text-sm font-semibold text-foreground/90">
+                      <Wrench className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+                      {r.technique}
+                    </p>
+                  </div>
                 </article>
               </Reveal>
             ))}

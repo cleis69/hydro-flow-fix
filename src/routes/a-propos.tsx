@@ -6,6 +6,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { StatCounter } from "@/components/site/StatCounter";
 import { TrustMarquee } from "@/components/site/Marquee";
 import { ABOUT } from "@/lib/page-data";
+import { IMAGES } from "@/lib/images";
 import { pageMeta, breadcrumbLd } from "@/lib/seo";
 
 const META = {
@@ -63,6 +64,17 @@ function Page() {
       <section className="border-y border-border bg-surface/30">
         <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:py-20">
           <Reveal>
+            <figure className="mb-10 overflow-hidden rounded-3xl border border-border">
+              <img
+                src={IMAGES.equipe.src}
+                alt={IMAGES.equipe.alt}
+                width={1400}
+                height={934}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[3/2] w-full object-cover"
+              />
+            </figure>
             <p className="eyebrow">Notre histoire</p>
             <h2 className="mt-3 font-display text-3xl font-black uppercase leading-tight sm:text-4xl">
               Comment on en est arrivés là

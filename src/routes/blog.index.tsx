@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/site/PageShell";
 import { QuoteSection } from "@/components/site/QuoteForm";
 import { Reveal } from "@/components/site/Reveal";
 import { ARTICLES } from "@/lib/blog-data";
+import { ARTICLE_IMAGES } from "@/lib/images";
 import { pageMeta, breadcrumbLd } from "@/lib/seo";
 
 const META = {
@@ -45,32 +46,45 @@ function Page() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {ARTICLES.map((a, i) => (
             <Reveal key={a.slug} delay={i * 50}>
-              <article className="surface-panel flex h-full flex-col p-6">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs uppercase tracking-[0.16em]">
-                  <span className="text-primary">{a.category}</span>
-                  <time dateTime={a.iso} className="text-muted-foreground">
-                    {a.date}
-                  </time>
-                </div>
-                <h2 className="mt-3 font-display text-lg font-black uppercase leading-tight tracking-tight">
-                  <Link to="/blog/$slug" params={{ slug: a.slug }} className="hover:text-primary">
-                    {a.title}
+              <article className="surface-panel flex h-full flex-col overflow-hidden">
+                {ARTICLE_IMAGES[a.slug] && (
+                  <Link to="/blog/$slug" params={{ slug: a.slug }} className="block">
+                    <img
+                      src={ARTICLE_IMAGES[a.slug]!.src}
+                      alt={ARTICLE_IMAGES[a.slug]!.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="aspect-[16/10] w-full border-b border-border object-cover"
+                    />
                   </Link>
-                </h2>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {a.excerpt}
-                </p>
-                <Link
-                  to="/blog/$slug"
-                  params={{ slug: a.slug }}
-                  className="group mt-5 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wide text-primary"
-                >
-                  Lire l'article
-                  <ArrowRight
-                    className="size-4 transition-transform group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
-                </Link>
+                )}
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs uppercase tracking-[0.16em]">
+                    <span className="text-primary">{a.category}</span>
+                    <time dateTime={a.iso} className="text-muted-foreground">
+                      {a.date}
+                    </time>
+                  </div>
+                  <h2 className="mt-3 font-display text-lg font-black uppercase leading-tight tracking-tight">
+                    <Link to="/blog/$slug" params={{ slug: a.slug }} className="hover:text-primary">
+                      {a.title}
+                    </Link>
+                  </h2>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {a.excerpt}
+                  </p>
+                  <Link
+                    to="/blog/$slug"
+                    params={{ slug: a.slug }}
+                    className="group mt-5 inline-flex items-center gap-2 font-display text-sm font-bold uppercase tracking-wide text-primary"
+                  >
+                    Lire l'article
+                    <ArrowRight
+                      className="size-4 transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
+                  </Link>
+                </div>
               </article>
             </Reveal>
           ))}
