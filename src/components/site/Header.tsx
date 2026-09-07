@@ -4,7 +4,7 @@ import { Menu, X, Phone, ChevronDown, Siren } from "lucide-react";
 import { COMPANY, SERVICES } from "@/lib/site-data";
 import { ZONES } from "@/lib/zones-data";
 import { cn } from "@/lib/utils";
-import emblem from "@/assets/emblem-hydro-curage.webp";
+import logo from "@/assets/logo-hydro-curage.webp";
 
 type NavLeaf = { to: string; label: string };
 type NavItem = { to: string; label: string; children?: NavLeaf[] };
@@ -131,15 +131,19 @@ export function Header() {
           className="flex shrink-0 items-center gap-3"
           aria-label="Hydro-Curage — accueil"
         >
-          <img
-            src={emblem}
-            alt=""
-            width={44}
-            height={44}
-            decoding="async"
-            className="size-11 shrink-0 object-contain"
+          <span
+            className="grid size-12 shrink-0 place-items-center rounded-xl bg-white p-1 shadow-sm"
             aria-hidden="true"
-          />
+          >
+            <img
+              src={logo}
+              alt=""
+              width={48}
+              height={48}
+              decoding="async"
+              className="size-full object-contain"
+            />
+          </span>
           <span>
             <span className="block whitespace-nowrap font-display text-lg font-black uppercase leading-none tracking-tight">
               Hydro<span className="text-primary">-</span>Curage

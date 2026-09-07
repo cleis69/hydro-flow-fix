@@ -15,15 +15,17 @@ export function Footer() {
     <footer className="border-t border-border bg-surface/40">
       <div className="mx-auto grid gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:py-20 max-w-7xl">
         <div>
-          <img
-            src={logo}
-            alt="Hydro-Curage — débouchage services, spécialiste hydrocureur en Île-de-France"
-            width={132}
-            height={132}
-            loading="lazy"
-            decoding="async"
-            className="mb-4 size-24 object-contain"
-          />
+          <span className="mb-5 grid size-28 place-items-center rounded-2xl bg-white p-2">
+            <img
+              src={logo}
+              alt="Hydro-Curage — débouchage services, spécialiste hydrocureur en Île-de-France"
+              width={112}
+              height={112}
+              loading="lazy"
+              decoding="async"
+              className="size-full object-contain"
+            />
+          </span>
           <p className="font-display text-2xl font-black uppercase tracking-tight">
             Hydro<span className="text-primary">-</span>Curage
           </p>
